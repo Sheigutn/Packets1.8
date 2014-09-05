@@ -8,6 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import static com.comphenix.protocol.ProtocolLibrary.*;
@@ -42,67 +43,67 @@ public class PacketAPI extends JavaPlugin{
         return instance;
     }
 
-    public void switchCamera(Player p, LivingEntity entity) throws Exception
+    public void switchCamera(Player p, LivingEntity entity) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(cameraPacket, new PacketPlayOutCamera(entity.getEntityId())));
     }
 
-    public void resetCamera(Player p) throws Exception
+    public void resetCamera(Player p) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(cameraPacket, new PacketPlayOutCamera(p.getEntityId())));
     }
 
-    public void setTitleWithAnimations(Player p, PacketPlayOutTitle.Action action, String json, int fadeIn, int stay, int fadeOut) throws Exception
+    public void setTitleWithAnimations(Player p, PacketPlayOutTitle.Action action, String json, int fadeIn, int stay, int fadeOut) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(titlePacket, new PacketPlayOutTitle(action, json, fadeIn, stay, fadeOut)));
     }
 
-    public void clearTitle(Player p) throws Exception
+    public void clearTitle(Player p) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(titlePacket, new PacketPlayOutTitle(PacketPlayOutTitle.Action.CLEAR, null)));
     }
-    public void resetTitle(Player p) throws Exception
+    public void resetTitle(Player p) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(titlePacket, new PacketPlayOutTitle(PacketPlayOutTitle.Action.RESET, null)));
     }
 
-    public void setTitle(Player p, PacketPlayOutTitle.Action action, String json) throws Exception
+    public void setTitle(Player p, PacketPlayOutTitle.Action action, String json) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(titlePacket, new PacketPlayOutTitle(action, json)));
     }
 
-    public void setTabListHeaderAndFooter(Player p, String header, String footer) throws Exception
+    public void setTabListHeaderAndFooter(Player p, String header, String footer) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(tablistPacket, new PacketPlayOutTabListHeaderFooter(header, footer)));
     }
 
-    public void sendWorldBorder(Player p, double x, double z, double oldRadius, double newRadius, long speed) throws Exception
+    public void sendWorldBorder(Player p, double x, double z, double oldRadius, double newRadius, long speed) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(x, z, oldRadius, newRadius, speed,-1,-1,-1)));
     }
 
-    public void setWorldBorderCenter(Player p, double x, double z) throws Exception
+    public void setWorldBorderCenter(Player p, double x, double z) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(x,z)));
     }
-    public void setWorldBorderSize(Player p, double radius) throws Exception
+    public void setWorldBorderSize(Player p, double radius) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(radius)));
     }
 
-    public void changeWorldBorderSize(Player p, double oldSize, double newSize) throws Exception
+    public void changeWorldBorderSize(Player p, double oldSize, double newSize) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(Double.valueOf(oldSize), Double.valueOf(newSize))));
     }
 
 
-    public void setWorldBorderWarningTime(Player p, int warningTime) throws Exception
+    public void setWorldBorderWarningTime(Player p, int warningTime) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(PacketPlayOutWorldBorder.Action.SET_WARNING_TIME, warningTime, -1)));
     }
 
 
-    public void setWorldBorderWarningBlocks(Player p, int warningBlocks) throws Exception
+    public void setWorldBorderWarningBlocks(Player p, int warningBlocks) throws InvocationTargetException
     {
             getProtocolManager().sendServerPacket(p, new PacketContainer(borderPacket, new PacketPlayOutWorldBorder(PacketPlayOutWorldBorder.Action.SET_WARNING_BLOCKS,-1,warningBlocks)));
     }
