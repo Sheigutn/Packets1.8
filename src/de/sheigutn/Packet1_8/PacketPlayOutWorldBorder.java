@@ -17,6 +17,7 @@ public class PacketPlayOutWorldBorder extends Packet {
     public int warningBlocks = 5;
     public PacketPlayOutWorldBorder(double x, double z, double oldRadius, double newRadius, long speed, int portalTeleportBoundary, int warningTime, int warningBlocks)
     {
+        this.action = Action.INITIALIZE;
         this.x = x;
         this.z = z;
         this.oldRadius = oldRadius;
@@ -55,7 +56,8 @@ public class PacketPlayOutWorldBorder extends Packet {
         if(warningTime != -1) this.warningTime = warningTime;
         if(warningBlocks != -1) this.warningBlocks = warningBlocks;
     }
-                                    @Override
+
+    @Override
     public void a(PacketDataSerializer packetDataSerializer) throws IOException {
         action = Action.values()[packetDataSerializer.a()];
         if(action.ordinal() == Action.SET_SIZE.ordinal())
@@ -66,7 +68,7 @@ public class PacketPlayOutWorldBorder extends Packet {
         {
             oldRadius = packetDataSerializer.readDouble();
             newRadius = packetDataSerializer.readDouble();
-            speed = VarLong.readVarLong(packetDataSerializer);
+            speed = Var.readVarLong(packetDataSerializer);
         }
         if(action.ordinal() == Action.SET_CENTER.ordinal()) {
             x = packetDataSerializer.readDouble();
@@ -78,7 +80,7 @@ public class PacketPlayOutWorldBorder extends Packet {
             z = packetDataSerializer.readDouble();
             oldRadius = packetDataSerializer.readDouble();
             newRadius = packetDataSerializer.readDouble();
-            speed = VarLong.readVarLong(packetDataSerializer);
+            speed = Var.readVarLong(packetDataSerializer);
             portalTeleportBoundary = packetDataSerializer.a();
             warningTime = packetDataSerializer.a();
             warningBlocks = packetDataSerializer.a();
@@ -106,7 +108,7 @@ public class PacketPlayOutWorldBorder extends Packet {
         {
             packetDataSerializer.writeDouble(oldRadius);
             packetDataSerializer.writeDouble(newRadius);
-            VarLong.writeVarLong(speed, packetDataSerializer);
+            Var.writeVarLong(speed, packetDataSerializer);
         }
         if(action.ordinal() == Action.SET_CENTER.ordinal()) {
             packetDataSerializer.writeDouble(x);
@@ -118,7 +120,7 @@ public class PacketPlayOutWorldBorder extends Packet {
             packetDataSerializer.writeDouble(z);
             packetDataSerializer.writeDouble(oldRadius);
             packetDataSerializer.writeDouble(newRadius);
-            VarLong.writeVarLong(speed, packetDataSerializer);
+            Var.writeVarLong(speed, packetDataSerializer);
             packetDataSerializer.b(portalTeleportBoundary);
             packetDataSerializer.b(warningTime);
             packetDataSerializer.b(warningBlocks);
