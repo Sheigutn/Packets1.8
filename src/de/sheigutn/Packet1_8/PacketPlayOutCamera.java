@@ -8,25 +8,25 @@ import java.io.IOException;
 
 public class PacketPlayOutCamera extends Packet {
 
-    public int entityID;
+	public int entityID;
 
-    public PacketPlayOutCamera(int entityID)
-    {
-        this.entityID = entityID;
-    }
-    @Override
-    public void a(PacketDataSerializer packetDataSerializer) throws IOException {
-        entityID = packetDataSerializer.a();
-    }
+	public PacketPlayOutCamera(int entityID) {
+		this.entityID = entityID;
+	}
 
-    @Override
-    public void b(PacketDataSerializer packetDataSerializer) throws IOException {
+	@Override
+	public void a(PacketDataSerializer packetDataSerializer) throws IOException {
+		entityID = packetDataSerializer.a();
+	}
 
-        packetDataSerializer.b(entityID);
-    }
+	@Override
+	public void b(PacketDataSerializer packetDataSerializer) throws IOException {
 
-    @Override
-    public void handle(PacketListener packetListener) {
+		packetDataSerializer.b(entityID);
+	}
 
-    }
+	@Override
+	public void handle(PacketListener packetListener) {
+
+	}
 }
