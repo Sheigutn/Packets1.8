@@ -2,4 +2,3 @@ main: de.sheigutn.Packet1_8.PacketAPI
 name: Packets1.8
 author: Sheigutn
 version: 1.0
-depend: [ProtocolLib]
